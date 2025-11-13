@@ -1,3 +1,35 @@
+/* Theme Variables */
+.light-mode {
+  --bg-primary: #fafafa;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f8fafc;
+  --text-primary: #1a1a1a;
+  --text-secondary: #555;
+  --border-color: #e5e7eb;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --border-color: #334155;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+.app {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
 /* Container and Layout */
 .container {
   max-width: 960px;
@@ -9,9 +41,35 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
+  padding: 1.5rem 0;
   border-bottom: 2px solid #4f46e5;
   margin-bottom: 2rem;
+  position: relative;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, #4f46e5, #7c3aed);
+  animation: slideIn 0.6s ease-out;
+}
+
+.logo-text {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeInDown 0.5s ease-out;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.5rem;
+  animation: fadeInUp 0.5s ease-out;
 }
 
 .grid {
@@ -23,22 +81,38 @@
 
 /* Card Component */
 .card {
-  background: #fff;
-  border: 1px solid #eee;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
 }
 
 /* Form Elements */
 .input {
   width: 100%;
-  padding: 0.6rem 0.8rem;
-  border: 1px solid #ddd;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
   border-radius: 8px;
   margin: 0.5rem 0;
   box-sizing: border-box;
   font-family: inherit;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
 textarea.input {
@@ -47,27 +121,59 @@ textarea.input {
 
 /* Buttons */
 .button {
-  padding: 0.6rem 0.9rem;
+  padding: 0.7rem 1.2rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 500;
-  transition: opacity 0.2s;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.button:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 .button:hover {
-  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.button:active {
+  transform: translateY(0);
 }
 
 .button.primary {
-  background: #4f46e5;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
   color: #fff;
 }
 
 .button.ghost {
-  background: #f1f5f9;
-  color: #333;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.button.theme-toggle {
+  background: var(--bg-tertiary);
+  font-size: 1.2rem;
+  padding: 0.5rem 0.8rem;
+  border: 2px solid var(--border-color);
 }
 
 /* Flex Layouts */
@@ -75,45 +181,137 @@ textarea.input {
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .row-right {
   display: flex;
   gap: 0.5rem;
   justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
 /* UI Elements */
 .badge {
-  background: #eef2ff;
+  background: linear-gradient(135deg, #eef2ff, #dbeafe);
   color: #4338ca;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 999px;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 600;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.dark-mode .badge {
+  background: linear-gradient(135deg, #1e293b, #334155);
+  color: #a5b4fc;
 }
 
 .progress {
-  height: 10px;
-  background: #e5e7eb;
+  height: 12px;
+  background: var(--bg-tertiary);
   border-radius: 999px;
   overflow: hidden;
   margin: 1rem 0;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .progress > div {
   height: 100%;
-  background: #10b981;
-  transition: width 0.3s ease;
+  background: linear-gradient(90deg, #10b981, #34d399);
+  transition: width 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress > div::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
 }
 
 .small {
   font-size: 0.9rem;
-  color: #555;
+  color: var(--text-secondary);
 }
 
 hr {
   border: none;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--border-color);
   margin: 1.5rem 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100px;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

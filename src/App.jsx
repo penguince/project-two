@@ -33,6 +33,7 @@ export default function App() {
   const [activeDeckId, setActiveDeckId] = useState(null);
   const [mode, setMode] = useState("home"); // "home" | "manage" | "study" | "stats"
   const [studyResults, setStudyResults] = useState(null);
+  const [darkMode, setDarkMode] = useState(false);
 
   const activeDeck = decks.find((d) => d.id === activeDeckId) || null;
 
@@ -91,8 +92,9 @@ export default function App() {
   };
 
   return (
-    <div className="container">
-      <Header onHome={handleHome} />
+    <div className={`app ${darkMode ? 'dark-mode' : 'light-mode'}`}>
+      <div className="container">
+        <Header onHome={handleHome} darkMode={darkMode} onToggleTheme={() => setDarkMode(!darkMode)} />
 
       {mode === "home" && (
         <>
@@ -150,6 +152,7 @@ export default function App() {
           onDone={() => setMode("manage")}
         />
       )}
+      </div>
     </div>
   );
 }
