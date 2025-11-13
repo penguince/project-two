@@ -96,7 +96,7 @@ export default function App() {
       <div className="container">
         <Header onHome={handleHome} darkMode={darkMode} onToggleTheme={() => setDarkMode(!darkMode)} />
 
-      {mode === "home" && (
+        {mode === "home" && (
         <>
           <h2>Your Decks</h2>
           <DeckList
@@ -110,9 +110,9 @@ export default function App() {
           <hr />
           <DeckForm onCreate={addDeck} />
         </>
-      )}
+        )}
 
-      {mode === "manage" && activeDeck && (
+        {mode === "manage" && activeDeck && (
         <>
           <div className="row" style={{ justifyContent: "space-between" }}>
             <h2>
@@ -135,23 +135,23 @@ export default function App() {
           <hr />
           <CardForm onSubmit={(front, back) => addCard(activeDeck.id, front, back)} />
         </>
-      )}
+        )}
 
-      {mode === "study" && activeDeck && (
+        {mode === "study" && activeDeck && (
         <StudyView
           deck={activeDeck}
           onExit={() => setMode("manage")}
           onFinish={handleFinishStudy}
         />
-      )}
+        )}
 
-      {mode === "stats" && activeDeck && studyResults && (
+        {mode === "stats" && activeDeck && studyResults && (
         <Stats
           deck={activeDeck}
           studyResults={studyResults}
           onDone={() => setMode("manage")}
         />
-      )}
+        )}
       </div>
     </div>
   );
