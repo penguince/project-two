@@ -1,5 +1,4 @@
-# Flashcards Trainer# Flashcards Trainer# Flashcards Trainer# Flashcards Trainer# React + Vite
-
+# Flashcards Trainer 
 
 
 React app for creating and studying flashcard decks.
@@ -86,7 +85,7 @@ Deploy `dist/` folder to Netlify:
 
 
 
-React 19, Vite, CSS3This project fulfills the requirements for CSC 436 - Project 2: React Fundamentals. It implements a fully functional flashcard application where users can create custom study decks, add/edit/delete flashcards, and study with an interactive flip-card interface that tracks progress and displays session statistics.
+React 19, Vite, CSS3. This project fulfills the requirements for CSC 436 - Project 2: React Fundamentals. It implements a fully functional flashcard application where users can create custom study decks, add/edit/delete flashcards, and study with an interactive flip-card interface that tracks progress and displays session statistics.
 
 
 
