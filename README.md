@@ -254,8 +254,3 @@ npm install1. Push your code to GitHub
 ```bash
 
 npm run dev## Project Structure
-
-```
-
-```
-
