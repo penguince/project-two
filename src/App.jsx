@@ -7,29 +7,12 @@ import CardList from "./components/CardList.jsx";
 import CardForm from "./components/CardForm.jsx";
 import StudyView from "./components/StudyView.jsx";
 import Stats from "./components/Stats.jsx";
-
-// Seed data for initial decks
-const seedDecks = [
-  {
-    id: 1,
-    name: "React Basics",
-    cards: [
-      { id: 1, front: "What is JSX?", back: "A syntax extension for JavaScript that looks like HTML." },
-      { id: 2, front: "What hook manages state?", back: "useState." },
-    ],
-  },
-  {
-    id: 2,
-    name: "SQL Terms",
-    cards: [
-      { id: 1, front: "PRIMARY KEY", back: "Uniquely identifies a row in a table." },
-    ],
-  },
-];
+import DeckShowcase from "./components/DeckShowcase.jsx";
+import { sampleDecks } from "./data/sampleDecks.js";
 
 export default function App() {
   // App-level state management
-  const [decks, setDecks] = useState(seedDecks);
+  const [decks, setDecks] = useState(sampleDecks);
   const [activeDeckId, setActiveDeckId] = useState(null);
   const [mode, setMode] = useState("home"); // "home" | "manage" | "study" | "stats"
   const [studyResults, setStudyResults] = useState(null);
@@ -99,6 +82,7 @@ export default function App() {
         {mode === "home" && (
         <>
           <h2>Your Decks</h2>
+          <DeckShowcase decks={decks} />
           <DeckList
             decks={decks}
             onOpen={(id) => {
