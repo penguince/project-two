@@ -5,7 +5,7 @@ React app for creating and studying flashcard decks.
 
 
 
-## SetupA React application for creating and studying flashcard decks.
+## Setup a React application for creating and studying flashcard decks.
 
 
 
